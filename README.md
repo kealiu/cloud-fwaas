@@ -8,9 +8,9 @@ run the `deploy.sh` script to create the AMI and deploy firewall VPC/ASG/GWLB/En
 
 # ToDo
 
-- [] logstash
-- [] opensearch & dashboard
-- [] please open an issue
+- [ ] logstash
+- [ ] opensearch & dashboard
+- [ ] please open an issue
 
 # Credits
 
