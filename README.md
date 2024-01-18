@@ -6,6 +6,12 @@ A Cloud Firewall as a Services by Suricata and Elasticsearch/Opensearch
 
 run the `deploy.sh` script to create the AMI and deploy firewall VPC/ASG/GWLB/Endpoint
 
+# ToDo
+
+- [] logstash
+- [] opensearch & dashboard
+- [] please open an issue
+
 # Credits
 
 - for IDS, it use [Suricata](https://github.com/OISF/suricata)
