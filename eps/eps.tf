@@ -51,6 +51,6 @@ resource "aws_vpc_endpoint_service" "ids_svc" {
   acceptance_required        = true
   gateway_load_balancer_arns = [resource.aws_lb.gwlb.arn]
   tags = {
-    Name = "endpoint svc"
+    Name = "cloud-fwaas-services"
   }
 }

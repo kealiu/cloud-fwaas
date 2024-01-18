@@ -4,6 +4,10 @@ A Cloud Firewall as a Services by Suricata and Elasticsearch/Opensearch
 
 # Deploy
 
+it depends on `packer` and `terraform` for build AMI and deploy infrastruct, please refer their documents:
+- [Install Packer](https://developer.hashicorp.com/packer/tutorials/docker-get-started/get-started-install-cli)
+- [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+
 run the `deploy.sh` script to create the AMI and deploy firewall VPC/ASG/GWLB/Endpoint
 
 # ToDo

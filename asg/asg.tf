@@ -35,7 +35,7 @@ resource "aws_autoscaling_group" "asg" {
 
 resource "aws_autoscaling_policy" "suricata_policy_up" {
   for_each = aws_autoscaling_group.asg
-  name = "suricata_policy_up"
+  name = "suricata_policy_up-${each.value.name}"
   scaling_adjustment = 1
   adjustment_type = "ChangeInCapacity"
   cooldown = 180
@@ -44,7 +44,7 @@ resource "aws_autoscaling_policy" "suricata_policy_up" {
 
 resource "aws_cloudwatch_metric_alarm" "suricata_cpu_alarm_up" {
   for_each = aws_autoscaling_group.asg
-  alarm_name = "suricata_cpu_alarm_up"
+  alarm_name = "suricata_cpu_alarm_up-${each.value.name}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods = "2"
   metric_name = "CPUUtilization"
@@ -58,12 +58,12 @@ resource "aws_cloudwatch_metric_alarm" "suricata_cpu_alarm_up" {
   }
 
   alarm_description = "This metric monitor EC2 instance CPU utilization"
-  alarm_actions = [ aws_autoscaling_policy.suricata_policy_up.arn ]
+  alarm_actions = [ aws_autoscaling_policy.suricata_policy_up[each.key].arn ]
 }
 
 resource "aws_autoscaling_policy" "suricata_policy_down" {
   for_each = aws_autoscaling_group.asg
-  name = "suricata_policy_down"
+  name = "suricata_policy_down-${each.value.name}"
   scaling_adjustment = -1
   adjustment_type = "ChangeInCapacity"
   cooldown = 180
@@ -72,7 +72,7 @@ resource "aws_autoscaling_policy" "suricata_policy_down" {
 
 resource "aws_cloudwatch_metric_alarm" "suricata_cpu_alarm_down" {
   for_each = aws_autoscaling_group.asg
-  alarm_name = "suricata_cpu_alarm_down"
+  alarm_name = "suricata_cpu_alarm_down-${each.value.name}"
   comparison_operator = "LessThanOrEqualToThreshold"
   evaluation_periods = "2"
   metric_name = "CPUUtilization"
@@ -86,6 +86,6 @@ resource "aws_cloudwatch_metric_alarm" "suricata_cpu_alarm_down" {
   }
 
   alarm_description = "This metric monitor EC2 instance CPU utilization"
-  alarm_actions = [ aws_autoscaling_policy.suricata_policy_down.arn ]
+  alarm_actions = [ aws_autoscaling_policy.suricata_policy_down[each.key].arn ]
 }
 

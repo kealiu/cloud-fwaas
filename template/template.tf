@@ -116,7 +116,7 @@ resource "aws_launch_template" "ids" {
   key_name = data.aws_key_pair.keypair.key_name
 
   network_interfaces {
-    associate_public_ip_address = true
+    associate_public_ip_address = false
     security_groups = [resource.aws_security_group.gwlb_sg.id]
   }
   # vpc_security_group_ids = [resource.aws_security_group.gwlb_sg.id]
